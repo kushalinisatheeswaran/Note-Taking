@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // routes
 app.use("/api/auth", authRoutes);
-app.use("api/notes",notesRouter);
+app.use("/api/notes",notesRouter);
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
