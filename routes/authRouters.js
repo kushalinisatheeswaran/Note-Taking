@@ -6,8 +6,8 @@ const router = express.Router();
 
 router.post('/register',upload.single('profileImage'), register);
 router.post('/login', login);
-router.post('/me',auth, getCurrentUser);
-router.post("/upload-profile-image",auth,upload.single("profile_image"),uploadProfileImage);
+router.get('/me',auth, getCurrentUser);
+router.post("/upload-profile-image",auth,upload.single("profileImage"),uploadProfileImage);
 
 
 module.exports = router;

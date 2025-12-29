@@ -53,6 +53,8 @@ const login= async (req, res) => {
 
     res.cookie("token",token,{
       httpOnly: true,
+      sameSite: "lax",     
+      secure: false, 
       expires:new Date(Date.now()+process.env.COOKIE_EXPIRES *24*60*60*1000),
 
     });
@@ -65,7 +67,7 @@ const login= async (req, res) => {
 const getCurrentUser =async(req,res)=>{
   try {
     const user_id =req.user.id;
-    const [users]=await db.query("SELECT id,username,email,contact,Profile_image from users WHERE id=?",[user_id]);
+    const [users]=await db.query("SELECT id,username,email,contact,profile_image from users WHERE id=?",[user_id]);
     if(users.length===0){
       return res.status(404).json({message:"user not found"});
     }

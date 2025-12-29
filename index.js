@@ -5,10 +5,18 @@ const authRoutes = require('./routes/authRouters');
 const notesRouter=require("./routes/notesRouter");
 const path = require('path');
 const app = express();
+const cors = require('cors');
+
 
 // ✅ REQUIRED to read JSON body
 app.use(express.json());
 app.use(cookieParser());
+
+// CORS configuration
+app.use(cors({
+  origin: 'http://localhost:5173', // Replace with your frontend URL
+  credentials: true, // Allow cookies to be sent
+}));
 
 app.use("/static", express.static(path.join(__dirname, 'uploads')));
 app.use(express.urlencoded({ extended: true }));
