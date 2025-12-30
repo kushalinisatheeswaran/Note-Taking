@@ -28,7 +28,7 @@ const updateNote=async(req,res)=>{
         const {note}=req.body;
         const user_id=req.user.id;
         const note_id=req.params.id;
-        const [result]=await db.query("UPDATE notes SET note = ? WHERE user_id = ? AND note_id = ?",[note,note_id,user_id]);
+        const [result]=await db.query("UPDATE notes SET note = ? WHERE user_id = ? AND note_id = ?",[note,user_id,note_id]);
         if(result.affectedRows===0){
             return res.status(404).json({message:"note not found"});
         }

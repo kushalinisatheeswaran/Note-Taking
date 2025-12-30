@@ -90,4 +90,15 @@ const uploadProfileImage= async(req,res)=>{
     res.status(500).json({ error: error.message });
   }
 }
-module.exports = { register ,login,getCurrentUser,uploadProfileImage};
+
+const logout = (req, res) => {
+  try{
+    res.clearCookie("token");
+    res.json({message:"logout successful"});
+  }catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+module.exports = { register ,login,getCurrentUser,uploadProfileImage, logout };
